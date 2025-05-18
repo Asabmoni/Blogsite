@@ -26,9 +26,10 @@ app.post("/api/articles/:name/comments", (req, res) => {
   const { name } = req.params;
   const { postedby, text } = req.body;
   const article = articleinfo.find((article) => article.name === name);
+  
   if (article) {
     article.comment.push({ postedby, text });
-    res.status(200).json(article.comment);
+    res.status(200).json(article);
   } else {
     res.status(404).json({ message: "Article not found" });
   }
